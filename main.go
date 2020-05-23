@@ -28,7 +28,7 @@ func main() {
 	r.LoadHTMLGlob("templates/*")
 	r.Static("/assets", "./static")
 
-	stu1 := &student{Name: "gwebframektutu", Age: 20}
+	stu1 := &student{Name: "Tom", Age: 20}
 	stu2 := &student{Name: "Jack", Age: 22}
 	r.GET("/", func(c *gwebframe.Context) {
 		c.HTML(http.StatusOK, "css.tmpl", nil)
