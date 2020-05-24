@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-// HandlerFunc defines the request handler used by gwebframe
+// HandlerFunc defines the request handler used by gee
 type HandlerFunc func(*Context)
 
 // Engine implement the interface of ServeHTTP
@@ -29,11 +29,18 @@ type (
 	}
 )
 
-// New is the constructor of gwebframe.Engine
+// New is the constructor of gee.Engine
 func New() *Engine {
 	engine := &Engine{router: newRouter()}
 	engine.RouterGroup = &RouterGroup{engine: engine}
 	engine.groups = []*RouterGroup{engine.RouterGroup}
+	return engine
+}
+
+// Default use Logger() & Recovery middlewares
+func Default() *Engine {
+	engine := New()
+	engine.Use(Logger(), Recovery())
 	return engine
 }
 
